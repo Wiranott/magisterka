@@ -1,4 +1,4 @@
-package pl.example.pdfboxmgr.DocumentData;
+package pl.example.pdfboxmgr.database;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package pl.example.pdfboxmgr.DocumentData;
+package pl.example.pdfboxmgr.database;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
