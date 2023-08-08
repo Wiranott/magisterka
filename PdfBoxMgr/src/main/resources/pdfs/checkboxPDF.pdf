@@ -30,14 +30,13 @@ endobj
 endobj
 5 0 obj
 <<
-/FT /Ch
-/Ff 131072
-/T (SampleComboBox)
-/Opt [(Opcja 1) (Opcja 2) (Opcja 3)]
+/FT /Btn
+/T (SampleCheckBox)
 /Type /Annot
 /Subtype /Widget
-/Rect [50.0 750.0 250.0 770.0]
+/Rect [50.0 750.0 70.0 770.0]
 /P 4 0 R
+/V /
 >>
 endobj
 xref
@@ -51,9 +50,9 @@ xref
 trailer
 <<
 /Root 1 0 R
-/ID [<86ED17A5A73088DC92AE550F618235BB> <86ED17A5A73088DC92AE550F618235BB>]
+/ID [<FB8927505082189D39FF837B6B2F0507> <FB8927505082189D39FF837B6B2F0507>]
 /Size 6
 >>
 startxref
-457
+414
 %%EOF

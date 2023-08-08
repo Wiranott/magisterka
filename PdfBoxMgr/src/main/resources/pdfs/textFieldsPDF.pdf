@@ -17,7 +17,7 @@ endobj
 endobj
 3 0 obj
 <<
-/Fields [5 0 R]
+/Fields [5 0 R 6 0 R]
 >>
 endobj
 4 0 obj
@@ -25,35 +25,44 @@ endobj
 /Type /Page
 /MediaBox [0.0 0.0 595.27563 841.8898]
 /Parent 2 0 R
-/Annots [5 0 R]
+/Annots [5 0 R 6 0 R]
 >>
 endobj
 5 0 obj
 <<
-/FT /Ch
-/Ff 131072
-/T (SampleComboBox)
-/Opt [(Opcja 1) (Opcja 2) (Opcja 3)]
+/FT /Tx
+/T (Field0)
 /Type /Annot
 /Subtype /Widget
 /Rect [50.0 750.0 250.0 770.0]
 /P 4 0 R
 >>
 endobj
+6 0 obj
+<<
+/FT /Tx
+/T (Field1)
+/Type /Annot
+/Subtype /Widget
+/Rect [50.0 700.0 250.0 720.0]
+/P 4 0 R
+>>
+endobj
 xref
-0 6
+0 7
 0000000000 65535 f
 0000000015 00000 n
 0000000094 00000 n
 0000000151 00000 n
-0000000188 00000 n
-0000000290 00000 n
+0000000194 00000 n
+0000000302 00000 n
+0000000413 00000 n
 trailer
 <<
 /Root 1 0 R
-/ID [<86ED17A5A73088DC92AE550F618235BB> <86ED17A5A73088DC92AE550F618235BB>]
-/Size 6
+/ID [<94BEF00A1F43FC5486C67C8B0ECD35A7> <94BEF00A1F43FC5486C67C8B0ECD35A7>]
+/Size 7
 >>
 startxref
-457
+524
 %%EOF

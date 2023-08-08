@@ -2,6 +2,8 @@ package pl.example.pdfboxmgr;
 
 import static java.util.Arrays.asList;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class PdfGeneratorTest {
@@ -35,8 +37,23 @@ public class PdfGeneratorTest {
 
     @Test
     void shouldGeneratePdfWithComboBox() {
-        var options = asList("Opcja 1", "Opcja 2", "Opcja 3");
         var fileName = "comboBoxPDF.pdf";
+        var options = asList("Opcja 1", "Opcja 2", "Opcja 3");
         pdfGenerator.generatePdfWithComboBox(fileName, options);
+    }
+
+    @Test
+    void shouldGeneratePdfWithTable() {
+        var fileName = "tablePDF.pdf";
+        List<String[]> data = new ArrayList<>();
+
+        String[] row1 = {"John", "Doe", "john@example.com"};
+        String[] row2 = {"Jane", "Smith", "jane@example.com"};
+        String[] row3 = {"Michael", "Johnson", "michael@example.com"};
+
+        data.add(row1);
+        data.add(row2);
+        data.add(row3);
+        pdfGenerator.generatePdfWithTable(fileName, data);
     }
 }
