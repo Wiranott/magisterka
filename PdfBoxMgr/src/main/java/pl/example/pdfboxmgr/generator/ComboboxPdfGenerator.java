@@ -41,5 +41,4 @@ public class ComboboxPdfGenerator {
             log.error("Error generating PDF with combobox", e);
         }
     }
-
 }
