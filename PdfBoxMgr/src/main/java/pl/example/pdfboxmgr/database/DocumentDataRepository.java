@@ -7,4 +7,3 @@ import org.springframework.stereotype.Repository;
 public interface DocumentDataRepository extends JpaRepository<DocumentDataEntity, Long> {
 
 }
-

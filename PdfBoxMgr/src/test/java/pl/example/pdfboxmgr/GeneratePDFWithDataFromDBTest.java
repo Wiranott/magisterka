@@ -37,8 +37,8 @@ public class GeneratePDFWithDataFromDBTest {
     @Test
     void shouldGeneratePdfWithDataFromDatabase() {
         var mockData = Arrays.asList(
-            new DocumentDataEntity("Dane 1"),
-            new DocumentDataEntity("Dane 2")
+            new DocumentDataEntity(1L, "Dane 1"),
+            new DocumentDataEntity(2L, "Dane 2")
         );
         Mockito.when(documentDataRepository.findAll()).thenReturn(mockData);
 
