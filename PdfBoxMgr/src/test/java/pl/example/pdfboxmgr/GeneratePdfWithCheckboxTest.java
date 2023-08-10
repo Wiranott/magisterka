@@ -14,8 +14,6 @@ import pl.example.pdfboxmgr.generator.CheckboxPdfGenerator;
 @SpringBootTest
 public class GeneratePdfWithCheckboxTest {
 
-    private static final String BASE_PATH = "C:\\Users\\mateu\\OneDrive\\Dokumenty\\magisterka\\magisterka\\PdfBoxMgr\\src\\main\\resources\\pdfs\\";
-
     @Autowired
     private CheckboxPdfGenerator checkboxPdfGenerator;
 

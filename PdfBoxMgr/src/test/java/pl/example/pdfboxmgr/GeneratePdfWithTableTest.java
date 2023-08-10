@@ -1,7 +1,7 @@
 package pl.example.pdfboxmgr;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.example.pdfboxmgr.generator.TablePdfGenerator.BASE_PATH;
+import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
 
 import java.io.File;
 import java.util.Arrays;

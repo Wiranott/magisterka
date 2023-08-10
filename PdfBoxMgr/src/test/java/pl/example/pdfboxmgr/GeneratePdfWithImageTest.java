@@ -1,6 +1,8 @@
 package pl.example.pdfboxmgr;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
+import static pl.example.pdfboxmgr.config.PdfConfig.IMAGE_PATH;
 
 import java.io.File;
 import org.junit.jupiter.api.Test;
@@ -9,10 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import pl.example.pdfboxmgr.generator.ImagePdfGenerator;
 
 @SpringBootTest
-public class GeneratePdfWithImage {
-
-    private static final String BASE_PATH = "C:\\Users\\mateu\\OneDrive\\Dokumenty\\magisterka\\magisterka\\PdfBoxMgr\\src\\main\\resources\\pdfs\\";
-
+public class GeneratePdfWithImageTest {
 
     @Autowired
     private ImagePdfGenerator imagePdfGenerator;
@@ -20,8 +19,7 @@ public class GeneratePdfWithImage {
     @Test
     void shouldGeneratePdfWithImage() {
         var fileName = "pdfWithImage.pdf";
-        var imagePath = "C:\\Users\\mateu\\OneDrive\\Dokumenty\\magisterka\\magisterka\\PdfBoxMgr\\src\\main\\resources\\images\\pelican.jpg";
-        imagePdfGenerator.generatePdfWithImage(fileName, imagePath);
+        imagePdfGenerator.generatePdfWithImage(fileName, IMAGE_PATH);
 
         var file = new File(BASE_PATH + fileName);
         assertTrue(file.exists());

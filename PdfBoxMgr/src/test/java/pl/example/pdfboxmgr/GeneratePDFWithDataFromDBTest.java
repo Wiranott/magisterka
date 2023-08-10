@@ -1,6 +1,7 @@
 package pl.example.pdfboxmgr;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
 
 import java.io.File;
 import java.util.Arrays;
@@ -20,8 +21,6 @@ import pl.example.pdfboxmgr.generator.DataFromDBPdfGenerator;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class GeneratePDFWithDataFromDBTest {
-
-    private static final String BASE_PATH = "C:\\Users\\mateu\\OneDrive\\Dokumenty\\magisterka\\magisterka\\PdfBoxMgr\\src\\main\\resources\\pdfs\\";
 
     @Mock
     private DocumentDataRepository documentDataRepository;

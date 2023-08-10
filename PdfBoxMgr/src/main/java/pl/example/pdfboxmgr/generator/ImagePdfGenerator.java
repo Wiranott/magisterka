@@ -1,5 +1,7 @@
 package pl.example.pdfboxmgr.generator;
 
+import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
+
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -12,8 +14,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class ImagePdfGenerator {
-
-    private static final String BASE_PATH = "C:\\Users\\mateu\\OneDrive\\Dokumenty\\magisterka\\magisterka\\PdfBoxMgr\\src\\main\\resources\\pdfs\\";
 
     public void generatePdfWithImage(String fileName, String imagePath) {
         var fullPath = BASE_PATH + fileName;

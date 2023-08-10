@@ -1,6 +1,7 @@
 package pl.example.pdfboxmgr.generator;
 
 import static java.util.Arrays.fill;
+import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,8 +16,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class TablePdfGenerator {
-
-    public static final String BASE_PATH = "C:\\Users\\mateu\\OneDrive\\Dokumenty\\magisterka\\magisterka\\PdfBoxMgr\\src\\main\\resources\\pdfs\\";
 
     public void generatePdfWithTable(String fileName, List<String[]> data) {
         var fullPath = BASE_PATH + fileName;

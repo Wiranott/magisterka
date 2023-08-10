@@ -1,11 +1,12 @@
 package pl.example.pdfboxmgr.generator;
 
+import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
+
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotationWidget;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDCheckBox;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class CheckboxPdfGenerator {
-
-    private static final String BASE_PATH = "C:\\Users\\mateu\\OneDrive\\Dokumenty\\magisterka\\magisterka\\PdfBoxMgr\\src\\main\\resources\\pdfs\\";
 
     public void generatePdfWithCheckbox(String fileName, float xPosition, float yPosition, boolean isChecked) {
         var fullPath = BASE_PATH + fileName;

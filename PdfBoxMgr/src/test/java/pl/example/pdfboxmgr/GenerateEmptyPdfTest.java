@@ -1,6 +1,7 @@
 package pl.example.pdfboxmgr;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +14,6 @@ import pl.example.pdfboxmgr.generator.EmptyPdfGenerator;
 
 @SpringBootTest
 public class GenerateEmptyPdfTest {
-
-    private static final String BASE_PATH = "C:\\Users\\mateu\\OneDrive\\Dokumenty\\magisterka\\magisterka\\PdfBoxMgr\\src\\main\\resources\\pdfs\\";
 
     @Autowired
     private EmptyPdfGenerator emptyPdfGenerator;

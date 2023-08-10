@@ -1,6 +1,7 @@
 package pl.example.pdfboxmgr;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
 
 import java.io.File;
 import org.junit.jupiter.api.Test;
@@ -10,8 +11,6 @@ import pl.example.pdfboxmgr.generator.SectionedPdfGenerator;
 
 @SpringBootTest
 public class GeneratePdfWithSectionsTest {
-
-    private static final String BASE_PATH = "C:\\Users\\mateu\\OneDrive\\Dokumenty\\magisterka\\magisterka\\PdfBoxMgr\\src\\main\\resources\\pdfs\\";
 
     @Autowired
     private SectionedPdfGenerator sectionedPdfGenerator;
