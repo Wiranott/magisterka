@@ -5,23 +5,27 @@ import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.example.pdfboxmgr.database.DocumentDataEntity;
 import pl.example.pdfboxmgr.database.DocumentDataRepository;
 
 @Slf4j
-@Service
-@RequiredArgsConstructor
+@Component
 public class DataFromDBPdfGenerator {
 
     private final DocumentDataRepository documentDataRepository;
+
+    @Autowired
+    public DataFromDBPdfGenerator(DocumentDataRepository documentDataRepository) {
+        this.documentDataRepository = documentDataRepository;
+    }
 
     public void generatePdfWithDataFromDatabase(String fileName) {
         var fullPath = BASE_PATH + fileName;
