@@ -1,6 +1,6 @@
 package pl.example.pdfboxmgr.generator;
 
-import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.PDF_PATH;
 
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class StyledPdfGenerator {
 
     public void generateStyledPdf(String fileName, int numberOfPages) {
-        var fullPath = BASE_PATH + fileName;
+        var fullPath = PDF_PATH + fileName;
         try (PDDocument document = new PDDocument()) {
             for (int i = 0; i < numberOfPages; i++) {
                 var page = new PDPage(PDRectangle.A4);

@@ -1,7 +1,7 @@
 package pl.example.pdfboxmgr;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.PDF_PATH;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class GenerateEmptyPdfTest {
         var fileName = "emptyPDF_" + numberOfPages + ".pdf";
         emptyPdfGenerator.generateEmptyPdf(fileName, numberOfPages);
 
-        var document = PDDocument.load(new File(BASE_PATH + fileName));
+        var document = PDDocument.load(new File(PDF_PATH + fileName));
         assertEquals(numberOfPages, document.getNumberOfPages());
         document.close();
     }

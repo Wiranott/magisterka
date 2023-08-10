@@ -1,6 +1,6 @@
 package pl.example.pdfboxmgr.generator;
 
-import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.PDF_PATH;
 
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ public class CombinedPdfGenerator {
 
             editableTextFieldsPdfGenerator.addEditableTextFieldsToDocument(document, page, numberOfFields);
 
-            document.save(BASE_PATH + fileName);
+            document.save(PDF_PATH + fileName);
         } catch (IOException e) {
             log.error("Error generating combined PDF", e);
         }

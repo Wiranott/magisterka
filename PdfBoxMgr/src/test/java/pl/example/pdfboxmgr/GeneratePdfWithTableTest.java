@@ -1,7 +1,7 @@
 package pl.example.pdfboxmgr;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.PDF_PATH;
 
 import java.io.File;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public class GeneratePdfWithTableTest {
     void shouldGeneratePdfWithTable(String fileName, List<String[]> data) {
         tablePdfGenerator.generatePdfWithTable(fileName, data);
 
-        var file = new File(BASE_PATH + fileName);
+        var file = new File(PDF_PATH + fileName);
         assertTrue(file.exists());
         assertTrue(file.length() > 0);
     }

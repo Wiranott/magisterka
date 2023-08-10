@@ -1,7 +1,7 @@
 package pl.example.pdfboxmgr;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.PDF_PATH;
 
 import java.io.File;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class GeneratePdfWithSectionsTest {
     void shouldGeneratePdfWithSections(String fileName, List<String> sections) {
         sectionedPdfGenerator.generatePdfWithSections(fileName, sections);
 
-        File file = new File(BASE_PATH + fileName);
+        File file = new File(PDF_PATH + fileName);
         assertTrue(file.exists());
         assertTrue(file.length() > 0);
     }

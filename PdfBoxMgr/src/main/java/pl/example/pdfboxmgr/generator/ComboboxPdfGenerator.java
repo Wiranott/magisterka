@@ -1,6 +1,6 @@
 package pl.example.pdfboxmgr.generator;
 
-import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.PDF_PATH;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class ComboboxPdfGenerator {
 
     public void generatePdfWithComboBox(String fileName, List<String> options) {
-        var fullPath = BASE_PATH + fileName;
+        var fullPath = PDF_PATH + fileName;
         try (PDDocument document = new PDDocument()) {
             var page = new PDPage(PDRectangle.A4);
             document.addPage(page);

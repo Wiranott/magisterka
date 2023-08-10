@@ -2,8 +2,8 @@ package pl.example.pdfboxmgr;
 
 import static java.util.stream.Stream.of;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
-import static pl.example.pdfboxmgr.config.PdfConfig.IMAGE_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.PDF_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.IMAGE_PATH;
 
 import java.io.File;
 import java.util.stream.Stream;
@@ -25,7 +25,7 @@ public class GenerateCombinedPdfTest {
     void shouldGenerateCombinedPdf(String fileName, String imagePath, String text, int numberOfFields) {
         combinedPdfGenerator.generateCombinedPdf(fileName, imagePath, text, numberOfFields);
 
-        var file = new File(BASE_PATH + fileName);
+        var file = new File(PDF_PATH + fileName);
         assertTrue(file.exists());
         assertTrue(file.length() > 0);
     }

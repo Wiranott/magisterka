@@ -1,6 +1,6 @@
 package pl.example.pdfboxmgr.generator;
 
-import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.PDF_PATH;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class TextPdfGenerator {
     private static final float LINE_HEIGHT = 1.5f * FONT_SIZE;
 
     public void generatePdfWithText(String fileName, String text) {
-        var fullPath = BASE_PATH + fileName;
+        var fullPath = PDF_PATH + fileName;
         try (PDDocument document = new PDDocument()) {
             var page = new PDPage(PDRectangle.A4);
             document.addPage(page);

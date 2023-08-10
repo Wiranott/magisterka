@@ -1,8 +1,8 @@
 package pl.example.pdfboxmgr;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
-import static pl.example.pdfboxmgr.config.PdfConfig.IMAGE_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.PDF_PATH;
+import static pl.example.pdfboxmgr.config.PdfBoxConfig.IMAGE_PATH;
 
 import java.io.File;
 import java.util.stream.Stream;
@@ -27,7 +27,7 @@ public class GeneratePdfWithImageTest {
     void shouldGeneratePdfWithImage(String imagePath, float xPosition, float yPosition, String fileName) {
         pdfGenerator.generatePdfWithImage(fileName, imagePath, xPosition, yPosition);
 
-        var file = new File(BASE_PATH + fileName);
+        var file = new File(PDF_PATH + fileName);
         assertTrue(file.exists());
         assertTrue(file.length() > 0);
     }
