@@ -25,9 +25,9 @@ public class GeneratePdfWitchEditableTextFieldsTest {
     private static Stream<Arguments> provideParametersForEditableTextFieldsPdf() {
         return of(
             Arguments.of("textFieldsPDF1.pdf", 1),
-            Arguments.of("textFieldsPDF2.pdf", 2),
-            Arguments.of("textFieldsPDF3.pdf", 3),
-            Arguments.of("textFieldsPDF4.pdf", 4)
+            Arguments.of("textFieldsPDF2.pdf", 10),
+            Arguments.of("textFieldsPDF3.pdf", 50),
+            Arguments.of("textFieldsPDF4.pdf", 100)
         );
     }
 }

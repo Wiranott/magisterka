@@ -3,6 +3,7 @@ package pl.example.pdfboxmgr.generator;
 import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
 
 import java.io.IOException;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SectionedPdfGenerator {
 
-    public void generatePdfWithSections(String fileName, String... sections) {
+    public void generatePdfWithSections(String fileName, List<String> sections) {
         String fullPath = BASE_PATH + fileName;
         try (PDDocument document = new PDDocument()) {
             PDPage page = new PDPage(PDRectangle.A4);

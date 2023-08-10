@@ -1,11 +1,13 @@
 package pl.example.pdfboxmgr;
 
-import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
 
 import java.io.File;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -31,9 +33,15 @@ public class GeneratePdfWitchComboboxTest {
 
     private static Stream<Arguments> provideDataForTest() {
         return Stream.of(
-            Arguments.of("comboBoxPDF1.pdf", asList("Opcja 1", "Opcja 2", "Opcja 3")),
-            Arguments.of("comboBoxPDF2.pdf", asList("Option A", "Option B")),
-            Arguments.of("comboBoxPDF3.pdf", asList("Choice X", "Choice Y", "Choice Z", "Choice W"))
+            Arguments.of("comboBoxPDF1.pdf", generateRandomOptions(10)),
+            Arguments.of("comboBoxPDF2.pdf", generateRandomOptions(50))
         );
+    }
+
+    private static List<String> generateRandomOptions(int count) {
+        Random random = new Random();
+        return IntStream.range(0, count)
+            .mapToObj(i -> "Option " + (char) ('A' + random.nextInt(26)))
+            .collect(Collectors.toList());
     }
 }

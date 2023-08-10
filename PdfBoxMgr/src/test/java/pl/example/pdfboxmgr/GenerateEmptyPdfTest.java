@@ -19,7 +19,7 @@ public class GenerateEmptyPdfTest {
     private EmptyPdfGenerator emptyPdfGenerator;
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 5, 10, 50})
+    @ValueSource(ints = {1, 5, 100, 500})
     void shouldGeneratePdfWithGivenNumberOfPages(int numberOfPages) throws IOException {
         var fileName = "emptyPDF_" + numberOfPages + ".pdf";
         emptyPdfGenerator.generateEmptyPdf(fileName, numberOfPages);
