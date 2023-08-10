@@ -32,4 +32,15 @@ public class ImagePdfGenerator {
             log.error("Error generating PDF with image", e);
         }
     }
+
+    public void addImageToDocument(PDDocument document, PDPage page, String imagePath, float x, float y) {
+        try {
+            var pdImage = PDImageXObject.createFromFile(imagePath, document);
+            var contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true);
+            contentStream.drawImage(pdImage, x, y, (float) pdImage.getWidth() / 3, (float) pdImage.getHeight() / 3);
+            contentStream.close();
+        } catch (IOException e) {
+            log.error("Error adding image to PDF", e);
+        }
+    }
 }

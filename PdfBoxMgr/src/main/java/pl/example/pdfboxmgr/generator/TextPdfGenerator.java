@@ -71,4 +71,18 @@ public class TextPdfGenerator {
 
         return lines;
     }
+
+    public void addTextToDocument(PDDocument document, PDPage page, String text, float x, float y) {
+        try {
+            var contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true);
+            contentStream.setFont(PDType1Font.HELVETICA, 12);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(x, y);
+            contentStream.showText(text);
+            contentStream.endText();
+            contentStream.close();
+        } catch (IOException e) {
+            log.error("Error adding text to PDF", e);
+        }
+    }
 }

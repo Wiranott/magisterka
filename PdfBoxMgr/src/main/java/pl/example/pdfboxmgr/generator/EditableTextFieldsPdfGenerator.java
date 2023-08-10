@@ -51,4 +51,24 @@ public class EditableTextFieldsPdfGenerator {
             log.error("Error generating PDF with editable text fields", e);
         }
     }
+
+    public void addEditableTextFieldsToDocument(PDDocument document, PDPage page, int numberOfFields) {
+        try {
+            var acroForm = new PDAcroForm(document);
+            document.getDocumentCatalog().setAcroForm(acroForm);
+
+            for (int i = 0; i < numberOfFields; i++) {
+                var textField = new PDTextField(acroForm);
+                textField.setPartialName("Field" + i);
+                var widget = textField.getWidgets().get(0);
+                var rect = new PDRectangle(50, 750 - i * 50, 200, 20);
+                widget.setRectangle(rect);
+                widget.setPage(page);
+                page.getAnnotations().add(widget);
+                acroForm.getFields().add(textField);
+            }
+        } catch (IOException e) {
+            log.error("Error adding editable text fields to PDF", e);
+        }
+    }
 }
