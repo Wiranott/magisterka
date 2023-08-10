@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ImagePdfGenerator {
 
-    public void generatePdfWithImage(String fileName, String imagePath) {
+    public void generatePdfWithImage(String fileName, String imagePath, float xPosition, float yPosition) {
         var fullPath = BASE_PATH + fileName;
         try (PDDocument document = new PDDocument()) {
             var page = new PDPage(PDRectangle.A4);
@@ -24,7 +24,7 @@ public class ImagePdfGenerator {
             var pdImage = PDImageXObject.createFromFile(imagePath, document);
             var contentStream = new PDPageContentStream(document, page);
 
-            contentStream.drawImage(pdImage, 50, 400, (float) pdImage.getWidth() / 3, (float) pdImage.getHeight() / 3);
+            contentStream.drawImage(pdImage, xPosition, yPosition, (float) pdImage.getWidth() / 3, (float) pdImage.getHeight() / 3);
             contentStream.close();
 
             document.save(fullPath);
@@ -32,5 +32,4 @@ public class ImagePdfGenerator {
             log.error("Error generating PDF with image", e);
         }
     }
-
 }
