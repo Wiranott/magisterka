@@ -6,6 +6,8 @@ import static pl.example.pdfboxmgr.config.PdfConfig.BASE_PATH;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,10 +36,13 @@ public class GeneratePdfWithSectionsTest {
     }
 
     private static Stream<Arguments> provideSectionData() {
+        List<String> fiftySections = IntStream.rangeClosed(1, 50)
+            .mapToObj(i -> "Sekcja " + i)
+            .collect(Collectors.toList());
+
         return Stream.of(
             Arguments.of("sectionedPDF1.pdf", Arrays.asList("Sekcja 1", "Sekcja 2", "Sekcja 3")),
-            Arguments.of("sectionedPDF2.pdf", Arrays.asList("Sekcja A", "Sekcja B")),
-            Arguments.of("sectionedPDF3.pdf", Arrays.asList("Sekcja X", "Sekcja Y", "Sekcja Z", "Sekcja W"))
+            Arguments.of("sectionedPDF2.pdf", fiftySections)
         );
     }
 }

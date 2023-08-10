@@ -31,11 +31,11 @@ public class TextPdfGenerator {
             var contentStream = new PDPageContentStream(document, page);
             contentStream.setFont(PDType1Font.HELVETICA, FONT_SIZE);
 
-            float width = page.getMediaBox().getWidth() - 2 * MARGIN;
-            PDFont font = PDType1Font.HELVETICA;
-            List<String> lines = splitTextIntoLines(text, width, font);
+            var width = page.getMediaBox().getWidth() - 2 * MARGIN;
+            var font = PDType1Font.HELVETICA;
+            var lines = splitTextIntoLines(text, width, font);
 
-            float yPosition = page.getMediaBox().getHeight() - MARGIN;
+            var yPosition = page.getMediaBox().getHeight() - MARGIN;
             for (String line : lines) {
                 contentStream.beginText();
                 contentStream.newLineAtOffset(MARGIN, yPosition);
@@ -53,8 +53,8 @@ public class TextPdfGenerator {
 
     private List<String> splitTextIntoLines(String text, float width, PDFont font) throws IOException {
         List<String> lines = new ArrayList<>();
-        String[] words = text.split(" ");
-        StringBuilder line = new StringBuilder();
+        var words = text.split(" ");
+        var line = new StringBuilder();
 
         for (String word : words) {
             if (font.getStringWidth(line.toString() + word) * FONT_SIZE / 1000 < width) {

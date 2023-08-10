@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
 public class StyledPdfGenerator {
 
     public void generateStyledPdf(String fileName, int numberOfPages) {
-        String fullPath = BASE_PATH + fileName;
+        var fullPath = BASE_PATH + fileName;
         try (PDDocument document = new PDDocument()) {
             for (int i = 0; i < numberOfPages; i++) {
-                PDPage page = new PDPage(PDRectangle.A4);
+                var page = new PDPage(PDRectangle.A4);
                 document.addPage(page);
 
-                PDPageContentStream contentStream = new PDPageContentStream(document, page);
+                var contentStream = new PDPageContentStream(document, page);
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 20);
                 contentStream.beginText();
                 contentStream.newLineAtOffset(100, 700 - i * 50);

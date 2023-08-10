@@ -16,22 +16,37 @@ import org.springframework.stereotype.Service;
 @Service
 public class SectionedPdfGenerator {
 
+    private static final float PAGE_HEIGHT = PDRectangle.A4.getHeight();
+    private static final float MARGIN = 50;
+    private static final float LINE_SPACING = 30;
+    private static final float FONT_SIZE = 18;
+
     public void generatePdfWithSections(String fileName, List<String> sections) {
-        String fullPath = BASE_PATH + fileName;
+        var fullPath = BASE_PATH + fileName;
         try (PDDocument document = new PDDocument()) {
-            PDPage page = new PDPage(PDRectangle.A4);
+            var page = new PDPage(PDRectangle.A4);
             document.addPage(page);
 
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
+            var contentStream = new PDPageContentStream(document, page);
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, FONT_SIZE);
 
-            float yPosition = 750;
+            var yPosition = PAGE_HEIGHT - MARGIN;
+
             for (String section : sections) {
+                if (yPosition < MARGIN) {
+                    contentStream.close();
+                    page = new PDPage(PDRectangle.A4);
+                    document.addPage(page);
+                    contentStream = new PDPageContentStream(document, page);
+                    contentStream.setFont(PDType1Font.HELVETICA_BOLD, FONT_SIZE);
+                    yPosition = PAGE_HEIGHT - MARGIN;
+                }
+
                 contentStream.beginText();
-                contentStream.newLineAtOffset(50, yPosition);
+                contentStream.newLineAtOffset(MARGIN, yPosition);
                 contentStream.showText(section);
                 contentStream.endText();
-                yPosition -= 30;
+                yPosition -= LINE_SPACING;
             }
 
             contentStream.close();
