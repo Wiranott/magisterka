@@ -1,5 +1,6 @@
 package pl.example.pdfboxmgr;
 
+import static java.util.stream.IntStream.range;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.example.pdfboxmgr.config.PDFBoxConfig.PDF_PATH;
 
@@ -34,29 +35,36 @@ public class GeneratePDFWithTableTest {
     }
 
     private static Stream<Arguments> provideTableData() {
-        return Stream.of(
-            Arguments.of("pdfWithTable1.pdf", Arrays.asList(
+
+        return range(0, 10)
+            .mapToObj(i -> Arguments.of("pdfWithTable1.pdf", Arrays.asList(
                 new String[]{"Name", "Age", "Email"},
-                new String[]{"John Doe", "25", "john@example.com"},
-                new String[]{"Jane Smith", "30", "jane@example.com"}
-            )),
-            Arguments.of("pdfWithTable2.pdf", Arrays.asList(
-                new String[]{"Title", "Author", "ISBN"},
-                new String[]{"The Great Gatsby", "F. Scott Fitzgerald", "9780743273565"},
-                new String[]{"Moby Dick", "Herman Melville", "9781853260087"},
-                new String[]{"Country", "Capital", "Population"},
-                new String[]{"USA", "Washington, D.C.", "331 million"},
-                new String[]{"UK", "London", "68 million"},
-                new String[]{"Country", "Capital", "Population"},
-                new String[]{"USA", "Washington, D.C.", "331 million"},
-                new String[]{"UK", "London", "68 million"},
-                new String[]{"Canada", "Ottawa", "38 million"},
-                new String[]{"Australia", "Canberra", "25 million"},
-                new String[]{"India", "New Delhi", "1.366 billion"},
                 new String[]{"Name", "Age", "Email"},
-                new String[]{"John Doe", "25", "john@example.com"},
-                new String[]{"Jane Smith", "30", "jane@example.com"}
-            ))
-        );
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"},
+                new String[]{"Name", "Age", "Email"}
+            )));
     }
 }
