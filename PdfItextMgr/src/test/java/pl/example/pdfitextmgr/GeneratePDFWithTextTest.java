@@ -1,8 +1,8 @@
-package pl.example.pdfboxmgr;
+package pl.example.pdfitextmgr;
 
 import static java.util.stream.IntStream.range;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.example.pdfboxmgr.config.PDFBoxConfig.PDF_PATH;
+import static pl.example.pdfitextmgr.config.PDFiTextConfig.BASE_PATH;
 
 import java.io.File;
 import java.util.stream.Stream;
@@ -11,7 +11,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.example.pdfboxmgr.generator.TextPDFGenerator;
+import pl.example.pdfitextmgr.generator.TextPDFGenerator;
+
 
 @SpringBootTest
 public class GeneratePDFWithTextTest {
@@ -24,7 +25,7 @@ public class GeneratePDFWithTextTest {
     void shouldGeneratePdfWithText(String fileName, String text) {
         textPdfGenerator.generatePdfWithText(fileName, text);
 
-        var file = new File(PDF_PATH + fileName);
+        var file = new File(BASE_PATH + fileName);
         assertTrue(file.exists());
         assertTrue(file.length() > 0);
     }

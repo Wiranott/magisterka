@@ -37,6 +37,14 @@ public class TextPDFGenerator {
 
             var yPosition = page.getMediaBox().getHeight() - MARGIN;
             for (String line : lines) {
+                if (yPosition < MARGIN) {
+                    contentStream.close();
+                    page = new PDPage(PDRectangle.A4);
+                    document.addPage(page);
+                    contentStream = new PDPageContentStream(document, page);
+                    contentStream.setFont(PDType1Font.HELVETICA, FONT_SIZE);
+                    yPosition = page.getMediaBox().getHeight() - MARGIN;
+                }
                 contentStream.beginText();
                 contentStream.newLineAtOffset(MARGIN, yPosition);
                 contentStream.showText(line);
@@ -57,7 +65,7 @@ public class TextPDFGenerator {
         var line = new StringBuilder();
 
         for (String word : words) {
-            if (font.getStringWidth(line.toString() + word) * FONT_SIZE / 1000 < width) {
+            if (font.getStringWidth(line + word) * FONT_SIZE / 1000 < width) {
                 line.append(word).append(" ");
             } else {
                 lines.add(line.toString());
