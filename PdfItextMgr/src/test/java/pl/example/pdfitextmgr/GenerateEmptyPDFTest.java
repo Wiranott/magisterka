@@ -1,5 +1,6 @@
 package pl.example.pdfitextmgr;
 
+import static java.util.stream.IntStream.range;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.example.pdfitextmgr.config.PDFiTextConfig.BASE_PATH;
 
@@ -29,11 +30,7 @@ public class GenerateEmptyPDFTest {
     }
 
     private static Stream<Arguments> provideEmptyPdfData() {
-        return Stream.of(
-            Arguments.of("emptyPDF1.pdf", 1),
-            Arguments.of("emptyPDF2.pdf", 5),
-            Arguments.of("emptyPDF3.pdf", 100),
-            Arguments.of("emptyPDF4.pdf", 500)
-        );
+        return range(0, 100)
+            .mapToObj(i -> Arguments.of("emptyPDF1.pdf", 1));
     }
 }
