@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
     <groupId>pl.example</groupId>
-    <artifactId>PdfBoxMgr</artifactId>
+    <artifactId>PDFBox</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>PdfBoxMgr</name>
-    <description>PdfBoxMgr</description>
+    <name>PDFBox</name>
+    <description>PDFBox</description>
     <properties>
         <java.version>17</java.version>
     </properties>

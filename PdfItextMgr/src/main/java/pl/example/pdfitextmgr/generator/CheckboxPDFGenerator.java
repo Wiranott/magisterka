@@ -6,21 +6,19 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfAnnotation;
 import com.itextpdf.text.pdf.PdfFormField;
-import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.RadioCheckField;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class ComboboxGenerator {
+public class CheckboxPDFGenerator {
 
-    public void generatePdfWithComboBox(String fileName, List<String> options) {
+    public void generatePdfWithCheckbox(String fileName, float xPosition, float yPosition, boolean isChecked) {
         var fullPath = BASE_PATH + fileName;
 
         try {
@@ -28,16 +26,16 @@ public class ComboboxGenerator {
             var writer = PdfWriter.getInstance(document, new FileOutputStream(fullPath));
             document.open();
 
-            var comboBox = PdfFormField.createCombo(writer, false, options.toArray(new String[0]), 0);
-            comboBox.setFieldName("SampleComboBox");
-            comboBox.setWidget(new Rectangle(50, 750, 250, 770), PdfName.HIGHLIGHT);
-            comboBox.setFlags(PdfAnnotation.FLAGS_PRINT);
-
-            writer.addAnnotation(comboBox);
+            var form = writer.getAcroForm();
+            var checkbox = new RadioCheckField(writer, new Rectangle(xPosition, yPosition, xPosition + 20, yPosition + 20), "SampleCheckBox",
+                "Yes");
+            checkbox.setChecked(isChecked);
+            PdfFormField checkboxField = checkbox.getCheckField();
+            form.addFormField(checkboxField);
 
             document.close();
         } catch (DocumentException | IOException e) {
-            log.error("Error generating PDF with combobox", e);
+            log.error("Error generating PDF with checkbox", e);
         }
     }
 }

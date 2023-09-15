@@ -5,22 +5,27 @@ import static pl.example.pdfitextmgr.config.PDFiTextConfig.BASE_PATH;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfAnnotation;
-import com.itextpdf.text.pdf.PdfFormField;
-import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
-public class ComboboxGenerator {
+@Slf4j
+public class CombinedPDFGenerator {
 
-    public void generatePdfWithComboBox(String fileName, List<String> options) {
+    @Autowired
+    private ImagePDFGenerator imagePdfGenerator;
+
+    @Autowired
+    private TextPDFGenerator textPdfGenerator;
+
+    @Autowired
+    private EditableTextFieldsPDFGenerator editableTextFieldsPdfGenerator;
+
+    public void generateCombinedPdf(String fileName, String imagePath, String text, int numberOfFields) {
         var fullPath = BASE_PATH + fileName;
 
         try {
@@ -28,16 +33,15 @@ public class ComboboxGenerator {
             var writer = PdfWriter.getInstance(document, new FileOutputStream(fullPath));
             document.open();
 
-            var comboBox = PdfFormField.createCombo(writer, false, options.toArray(new String[0]), 0);
-            comboBox.setFieldName("SampleComboBox");
-            comboBox.setWidget(new Rectangle(50, 750, 250, 770), PdfName.HIGHLIGHT);
-            comboBox.setFlags(PdfAnnotation.FLAGS_PRINT);
+            imagePdfGenerator.addImageToDocument(document, imagePath, 50, 650);
 
-            writer.addAnnotation(comboBox);
+            textPdfGenerator.addTextToDocument(document, text, 50, 600);
+
+            editableTextFieldsPdfGenerator.addEditableTextFieldsToDocument(writer, numberOfFields);
 
             document.close();
         } catch (DocumentException | IOException e) {
-            log.error("Error generating PDF with combobox", e);
+            log.error("Error generating combined PDF", e);
         }
     }
 }

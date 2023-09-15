@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pl.example</groupId>
-    <artifactId>PdfItextMgr</artifactId>
+    <artifactId>PDFiText</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>PdfItextMgr</name>
-    <description>PdfItextMgr</description>
+    <name>PDFiText</name>
+    <description>PDFiText</description>
     <properties>
         <java.version>17</java.version>
     </properties>
