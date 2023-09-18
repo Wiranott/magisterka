@@ -1,15 +1,13 @@
 package pl.example.pdfboxmgr;
 
-import static java.util.stream.IntStream.*;
+import static java.util.stream.IntStream.range;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pl.example.pdfboxmgr.config.PDFBoxConfig.PDF_PATH;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -34,7 +32,7 @@ public class GenerateEmptyPDFTest {
     }
 
     private static Stream<Arguments> providePdfData() {
-        return range(0, 100)
-            .mapToObj(i -> Arguments.of("emptyPDF1.pdf", 1));
+        return range(0, 20)
+            .mapToObj(i -> Arguments.of("emptyPDF1.pdf", 100000));
     }
 }

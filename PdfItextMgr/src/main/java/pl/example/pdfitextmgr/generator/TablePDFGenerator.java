@@ -9,6 +9,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TablePDFGenerator {
 
-    public void generatePdfWithTable(String fileName, String[][] data) {
+    public void generatePdfWithTable(String fileName, List<String[]> data) {
         var fullPath = BASE_PATH + fileName;
 
         try {
@@ -24,8 +25,8 @@ public class TablePDFGenerator {
             PdfWriter.getInstance(document, new FileOutputStream(fullPath));
             document.open();
 
-            if (data != null && data.length > 0) {
-                var table = new PdfPTable(data[0].length);
+            if (data != null && !data.isEmpty()) {
+                var table = new PdfPTable(data.get(0).length);
 
                 for (String[] row : data) {
                     for (String cellData : row) {

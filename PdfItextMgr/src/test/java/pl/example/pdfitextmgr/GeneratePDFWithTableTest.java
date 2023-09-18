@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.example.pdfitextmgr.config.PDFiTextConfig.BASE_PATH;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +24,7 @@ public class GeneratePDFWithTableTest {
 
     @ParameterizedTest
     @MethodSource("provideTableData")
-    void shouldGeneratePdfWithTable(String fileName, String[][] data) {
+    void shouldGeneratePdfWithTable(String fileName, List<String[]> data) {
         tablePdfGenerator.generatePdfWithTable(fileName, data);
 
         var file = new File(BASE_PATH + fileName);
@@ -32,10 +33,10 @@ public class GeneratePDFWithTableTest {
     }
 
     private static Stream<Arguments> provideTableData() {
+        List<String[]> repeatedData = new ArrayList<>(Collections.nCopies(100, new String[]{"HeaderA", "HeaderB"}));
+        repeatedData.addAll(Collections.nCopies(100, new String[]{"DataA", "DataB"}));
 
         return range(0, 10)
-            .mapToObj(i -> Arguments.of("pdfWithTable1.pdf", Arrays.asList(
-                Arguments.of("tablePDF1.pdf", new String[][]{{"HeaderA", "HeaderB"}, {"DataA", "DataB"}})
-            )));
+            .mapToObj(i -> Arguments.of("pdfWithTable.pdf", repeatedData));
     }
 }

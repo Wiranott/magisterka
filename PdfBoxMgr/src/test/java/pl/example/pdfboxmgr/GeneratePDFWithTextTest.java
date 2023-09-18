@@ -30,7 +30,7 @@ public class GeneratePDFWithTextTest {
     }
 
     private static Stream<Arguments> provideTextData() {
-        var length = 100000;
+        var length = 10;
         var string = "Lorem ipsum";
 
         return range(0, 100)

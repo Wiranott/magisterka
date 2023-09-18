@@ -20,13 +20,8 @@ public class TablePDFGenerator {
     public void generatePdfWithTable(String fileName, List<String[]> data) {
         var fullPath = PDF_PATH + fileName;
         try (PDDocument document = new PDDocument()) {
-            var page = new PDPage(PDRectangle.A4);
-            document.addPage(page);
-
-            var contentStream = new PDPageContentStream(document, page);
-
             var margin = 50;
-            var tableWidth = page.getMediaBox().getWidth() - 2 * margin;
+            var tableWidth = PDRectangle.A4.getWidth() - 2 * margin;
             var yPosition = 750;
             var rowHeight = 20;
             var cols = data.get(0).length;
@@ -34,7 +29,19 @@ public class TablePDFGenerator {
             var colWidths = new float[cols];
             fill(colWidths, tableLength);
 
+            PDPage page = new PDPage(PDRectangle.A4);
+            document.addPage(page);
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
             for (String[] row : data) {
+                if (yPosition < margin) {
+                    contentStream.close();
+                    page = new PDPage(PDRectangle.A4);
+                    document.addPage(page);
+                    contentStream = new PDPageContentStream(document, page);
+                    yPosition = 750;
+                }
+
                 for (int i = 0; i < row.length; i++) {
                     var text = row[i];
                     contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
