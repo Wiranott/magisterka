@@ -29,9 +29,9 @@ public class TablePDFGenerator {
             var colWidths = new float[cols];
             fill(colWidths, tableLength);
 
-            PDPage page = new PDPage(PDRectangle.A4);
+            var page = new PDPage(PDRectangle.A4);
             document.addPage(page);
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+            var contentStream = new PDPageContentStream(document, page);
 
             for (String[] row : data) {
                 if (yPosition < margin) {

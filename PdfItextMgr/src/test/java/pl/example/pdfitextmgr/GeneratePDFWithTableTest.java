@@ -33,10 +33,9 @@ public class GeneratePDFWithTableTest {
     }
 
     private static Stream<Arguments> provideTableData() {
-        List<String[]> repeatedData = new ArrayList<>(Collections.nCopies(100, new String[]{"HeaderA", "HeaderB"}));
-        repeatedData.addAll(Collections.nCopies(100, new String[]{"DataA", "DataB"}));
+        var repeatedData = new ArrayList<>(Collections.nCopies(100, new String[]{"HeaderA", "HeaderB", "HeaderC", "HeaderD"}));
 
-        return range(0, 10)
+        return range(0, 100)
             .mapToObj(i -> Arguments.of("pdfWithTable.pdf", repeatedData));
     }
 }
