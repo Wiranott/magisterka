@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.example.pdfboxmgr.config.PDFBoxConfig.PDF_PATH;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -27,22 +26,25 @@ public class GeneratePDFWithSectionsTest {
 
     @ParameterizedTest
     @MethodSource("provideSectionData")
-    void shouldGeneratePdfWithSections(String fileName, List<String> sections) {
-        sectionedPdfGenerator.generatePdfWithSections(fileName, sections);
+    void shouldGeneratePdfWithSections(String fileName, String title, List<String> sectionTitles, List<String> sectionContents) {
+        sectionedPdfGenerator.generatePdfWithSections(fileName, title, sectionTitles.toArray(new String[0]), sectionContents.toArray(new String[0]));
 
-        File file = new File(PDF_PATH + fileName);
+        var file = new File(PDF_PATH + fileName);
         assertTrue(file.exists());
         assertTrue(file.length() > 0);
     }
 
     private static Stream<Arguments> provideSectionData() {
-        List<String> fiftySections = IntStream.rangeClosed(1, 50)
+        var fiftySectionTitles = IntStream.rangeClosed(1, 50)
             .mapToObj(i -> "Sekcja " + i)
             .collect(Collectors.toList());
 
+        var fiftySectionContents = IntStream.rangeClosed(1, 50)
+            .mapToObj(i -> "Tresc sekcji " + i)
+            .collect(Collectors.toList());
+
         return Stream.of(
-            Arguments.of("sectionedPDF1.pdf", Arrays.asList("Sekcja 1", "Sekcja 2", "Sekcja 3")),
-            Arguments.of("sectionedPDF2.pdf", fiftySections)
+            Arguments.of("sectionedPDF.pdf", "Tytul dokumentu", fiftySectionTitles, fiftySectionContents)
         );
     }
 }
