@@ -15,23 +15,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class ImagePDFGenerator {
 
-    public void generatePdfWithImage(String fileName, String imagePath, float xPosition, float yPosition) {
+    public void generatePdfWithImage(String fileName, String imagePath, int numberOfPages) {
         var fullPath = PDF_PATH + fileName;
         try (PDDocument document = new PDDocument()) {
-            var page = new PDPage(PDRectangle.A4);
-            document.addPage(page);
-
             var pdImage = PDImageXObject.createFromFile(imagePath, document);
-            var contentStream = new PDPageContentStream(document, page);
 
-            contentStream.drawImage(pdImage, xPosition, yPosition, (float) pdImage.getWidth() / 3, (float) pdImage.getHeight() / 3);
-            contentStream.close();
+            for (int i = 0; i < numberOfPages; i++) {
+                var page = new PDPage(PDRectangle.A4);
+                document.addPage(page);
+                var contentStream = new PDPageContentStream(document, page);
+
+                float scale = 2f / 3;
+                float imageWidth = pdImage.getWidth() * scale;
+                float imageHeight = pdImage.getHeight() * scale;
+
+                var xPosition = (PDRectangle.A4.getWidth() - imageWidth) / 2;
+                var yPosition = (PDRectangle.A4.getHeight() - imageHeight) / 2;
+
+                contentStream.drawImage(pdImage, xPosition, yPosition, imageWidth, imageHeight);
+                contentStream.close();
+            }
 
             document.save(fullPath);
         } catch (IOException e) {
             log.error("Error generating PDF with image", e);
         }
     }
+
 
     public void addImageToDocument(PDDocument document, PDPage page, String imagePath, float x, float y) {
         try {

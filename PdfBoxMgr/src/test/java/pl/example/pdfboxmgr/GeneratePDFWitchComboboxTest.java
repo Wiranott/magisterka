@@ -1,5 +1,6 @@
 package pl.example.pdfboxmgr;
 
+import static java.util.stream.Collectors.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.example.pdfboxmgr.config.PDFBoxConfig.PDF_PATH;
 
@@ -32,16 +33,15 @@ public class GeneratePDFWitchComboboxTest {
     }
 
     private static Stream<Arguments> provideDataForTest() {
-        return Stream.of(
-            Arguments.of("comboBoxPDF1.pdf", generateRandomOptions(10)),
-            Arguments.of("comboBoxPDF2.pdf", generateRandomOptions(50))
-        );
+        return IntStream.range(0, 20)
+            .mapToObj(i -> Arguments.of("comboBoxPDF.pdf", generateRandomOptions())
+            );
     }
 
-    private static List<String> generateRandomOptions(int count) {
+    private static List<String> generateRandomOptions() {
         Random random = new Random();
-        return IntStream.range(0, count)
-            .mapToObj(i -> "Option " + (char) ('A' + random.nextInt(26)))
-            .collect(Collectors.toList());
+        return IntStream.range(0, 10000)
+            .mapToObj(i -> "Option " + (char) ('A' + random.nextInt(20)))
+            .collect(toList());
     }
 }

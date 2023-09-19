@@ -1,5 +1,6 @@
 package pl.example.pdfitextmgr;
 
+import static java.util.stream.IntStream.range;
 import static java.util.stream.Stream.of;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.example.pdfitextmgr.config.PDFiTextConfig.BASE_PATH;
@@ -31,9 +32,7 @@ public class GenerateCombinedPDFTest {
     }
 
     private static Stream<Arguments> provideCombinedData() {
-        return of(
-            Arguments.of("combinedPDF1.pdf", IMAGE_PATH, "Sample text 1", 5),
-            Arguments.of("combinedPDF2.pdf", IMAGE_PATH, "Sample text 2", 10)
-        );
+        return range(0, 20)
+            .mapToObj(i -> Arguments.of("combinedPDF.pdf", IMAGE_PATH, "Sample text", 10));
     }
 }

@@ -1,7 +1,6 @@
 package pl.example.pdfitextmgr;
 
-import static java.util.stream.Collectors.*;
-import static java.util.stream.Stream.of;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.example.pdfitextmgr.config.PDFiTextConfig.BASE_PATH;
 
@@ -33,16 +32,15 @@ public class GeneratePDFWithComboboxTest {
     }
 
     private static Stream<Arguments> provideDataForTest() {
-        return of(
-            Arguments.of("comboBoxPDF1.pdf", generateRandomOptions(10)),
-            Arguments.of("comboBoxPDF2.pdf", generateRandomOptions(50))
-        );
+        return IntStream.range(0, 20)
+            .mapToObj(i -> Arguments.of("comboBoxPDF.pdf", generateRandomOptions())
+            );
     }
 
-    private static List<String> generateRandomOptions(int count) {
+    private static List<String> generateRandomOptions() {
         var random = new Random();
-        return IntStream.range(0, count)
-            .mapToObj(i -> "Option " + (char) ('A' + random.nextInt(26)))
+        return IntStream.range(0, 10000)
+            .mapToObj(i -> "Option " + (char) ('A' + random.nextInt(1)))
             .collect(toList());
     }
 }

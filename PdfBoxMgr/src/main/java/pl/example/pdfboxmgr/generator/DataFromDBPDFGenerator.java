@@ -39,6 +39,14 @@ public class DataFromDBPDFGenerator {
 
             var yPosition = 750;
             for (String text : data) {
+                if (yPosition < 50) {
+                    contentStream.close();
+                    page = new PDPage(PDRectangle.A4);
+                    document.addPage(page);
+                    contentStream = new PDPageContentStream(document, page);
+                    yPosition = 750;
+                }
+
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
                 contentStream.beginText();
                 contentStream.moveTextPositionByAmount(50, yPosition);

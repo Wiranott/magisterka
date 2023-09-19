@@ -1,5 +1,6 @@
 package pl.example.pdfboxmgr;
 
+import static java.util.stream.IntStream.range;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.example.pdfboxmgr.config.PDFBoxConfig.PDF_PATH;
 
@@ -35,16 +36,16 @@ public class GeneratePDFWithSectionsTest {
     }
 
     private static Stream<Arguments> provideSectionData() {
-        var fiftySectionTitles = IntStream.rangeClosed(1, 50)
+        var fiftySectionTitles = IntStream.rangeClosed(1, 500000)
             .mapToObj(i -> "Sekcja " + i)
             .collect(Collectors.toList());
 
-        var fiftySectionContents = IntStream.rangeClosed(1, 50)
+        var fiftySectionContents = IntStream.rangeClosed(1, 500000)
             .mapToObj(i -> "Tresc sekcji " + i)
             .collect(Collectors.toList());
 
-        return Stream.of(
-            Arguments.of("sectionedPDF.pdf", "Tytul dokumentu", fiftySectionTitles, fiftySectionContents)
-        );
+        return range(0, 20)
+            .mapToObj(i -> Arguments.of("sectionedPDF.pdf", "Tytul dokumentu", fiftySectionTitles, fiftySectionContents)
+            );
     }
 }

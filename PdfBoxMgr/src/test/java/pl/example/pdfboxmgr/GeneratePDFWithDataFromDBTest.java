@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pl.example.pdfboxmgr.config.PDFBoxConfig.PDF_PATH;
 
 import java.io.File;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +18,7 @@ public class GeneratePDFWithDataFromDBTest {
     @Autowired
     private DataFromDBPDFGenerator pdfGenerator;
 
-    @Test
+    @RepeatedTest(20)
     void shouldGeneratePdfWithDataFromDatabase() {
         var fileName = "dateFromDBPDF.pdf";
         pdfGenerator.generatePdfWithDataFromDatabase(fileName);

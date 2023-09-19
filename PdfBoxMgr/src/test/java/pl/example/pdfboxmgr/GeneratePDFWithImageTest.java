@@ -1,10 +1,11 @@
 package pl.example.pdfboxmgr;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.example.pdfboxmgr.config.PDFBoxConfig.PDF_PATH;
 import static pl.example.pdfboxmgr.config.PDFBoxConfig.IMAGE_PATH;
+import static pl.example.pdfboxmgr.config.PDFBoxConfig.PDF_PATH;
 
 import java.io.File;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,20 +24,17 @@ public class GeneratePDFWithImageTest {
     private ImagePDFGenerator pdfGenerator;
 
     @ParameterizedTest
-    @MethodSource("provideImageTestData")
-    void shouldGeneratePdfWithImage(String imagePath, float xPosition, float yPosition, String fileName) {
-        pdfGenerator.generatePdfWithImage(fileName, imagePath, xPosition, yPosition);
+    @MethodSource("provideImageParameters")
+    void shouldGeneratePdfWithImage(String imagePath, String fileName, int numberOfPages) {
+        pdfGenerator.generatePdfWithImage(fileName, imagePath, numberOfPages);
 
         var file = new File(PDF_PATH + fileName);
         assertTrue(file.exists());
         assertTrue(file.length() > 0);
     }
 
-    private static Stream<Arguments> provideImageTestData() {
-        return Stream.of(
-            Arguments.of(IMAGE_PATH, 50f, 750f, "imagePDF1.pdf"),
-            Arguments.of(IMAGE_PATH, 100f, 700f, "imagePDF2.pdf"),
-            Arguments.of(IMAGE_PATH, 250f, 10f, "imagePDF3.pdf")
-        );
+    private static Stream<Arguments> provideImageParameters() {
+        return IntStream.range(0, 20)
+            .mapToObj(i -> Arguments.of(IMAGE_PATH, "imagePDF.pdf", 10000));
     }
 }

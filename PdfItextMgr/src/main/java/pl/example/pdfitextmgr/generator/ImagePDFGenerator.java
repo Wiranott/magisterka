@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ImagePDFGenerator {
 
-    public void generatePdfWithImage(String fileName) {
+    public void generatePdfWithImage(String fileName, int numberOfPages) {
         var fullPath = BASE_PATH + fileName;
         try {
             var document = new Document();
@@ -28,7 +28,11 @@ public class ImagePDFGenerator {
             var img = Image.getInstance(IMAGE_PATH);
             img.scaleToFit(PageSize.A4.getWidth() - 100, PageSize.A4.getHeight() - 100);
             img.setAlignment(Element.ALIGN_CENTER);
-            document.add(img);
+
+            for (int i = 0; i < numberOfPages; i++) {
+                document.newPage();
+                document.add(img);
+            }
 
             document.close();
         } catch (Exception e) {

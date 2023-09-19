@@ -1,6 +1,6 @@
 package pl.example.pdfboxmgr;
 
-import static java.util.stream.Stream.of;
+import static java.util.stream.IntStream.range;
 
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,11 +23,7 @@ public class GeneratePDFWitchEditableTextFieldsTest {
     }
 
     private static Stream<Arguments> provideParametersForEditableTextFieldsPdf() {
-        return of(
-            Arguments.of("textFieldsPDF1.pdf", 1),
-            Arguments.of("textFieldsPDF2.pdf", 10),
-            Arguments.of("textFieldsPDF3.pdf", 50),
-            Arguments.of("textFieldsPDF4.pdf", 100)
-        );
+        return range(0, 20)
+            .mapToObj(i -> Arguments.of("emptyPDF.pdf", 1));
     }
 }

@@ -1,5 +1,6 @@
 package pl.example.pdfboxmgr;
 
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,10 +25,7 @@ public class GeneratePDFWithCheckboxTest {
     }
 
     private static Stream<Arguments> provideParametersForCheckboxPdf() {
-        return Stream.of(
-            Arguments.of("checkboxPDF1.pdf", 50f, 750f, true),
-            Arguments.of("checkboxPDF2.pdf", 100f, 700f, false),
-            Arguments.of("checkboxPDF3.pdf", 150f, 650f, true)
-        );
+        return IntStream.range(0, 20)
+            .mapToObj(i -> Arguments.of("checkboxPDF.pdf", 50f, 750f, false));
     }
 }

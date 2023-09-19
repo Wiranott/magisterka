@@ -31,6 +31,6 @@ public class GenerateEmptyPDFTest {
 
     private static Stream<Arguments> provideEmptyPdfData() {
         return range(0, 20)
-            .mapToObj(i -> Arguments.of("emptyPDF1.pdf", 100000));
+            .mapToObj(i -> Arguments.of("emptyPDF.pdf", 100000));
     }
 }
